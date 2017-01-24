@@ -1,0 +1,81 @@
+Grade: 38.00/50.00
+
+3 Deduction(s):
+
+--------------
+#1: 4.00 points
+Failing test: test_cosine_sim_1: 
+        @points=4
+        
+Traceback (most recent call last):
+  File "../assignments-sol/a3/a3_test.py", line 80, in test_cosine_sim_1
+    0.37)
+AssertionError: 70.359999999999999 != 0.37
+
+source:
+    def test_cosine_sim_1(self):
+         """
+         @points=4
+         """
+         self.assertEqual(round(cosine_sim(csr_matrix([1,2,3]), csr_matrix([4,-5,6])), 2),
+                          0.37)
+--------------
+
+--------------
+#2: 4.00 points
+Failing test: test_cosine_sim_2: 
+        @points=4
+        
+Traceback (most recent call last):
+  File "../assignments-sol/a3/a3_test.py", line 87, in test_cosine_sim_2
+    -0.31)
+AssertionError: 58.859999999999999 != -0.31
+
+source:
+    def test_cosine_sim_2(self):
+         """
+         @points=4
+         """
+         self.assertEqual(round(cosine_sim(csr_matrix([1,2,0]), csr_matrix([4,-5,6])), 2),
+                          -0.31)
+--------------
+
+--------------
+#3: 4.00 points
+Failing test: test_predict_2: 
+        @points=4
+        
+Traceback (most recent call last):
+  File "../assignments-sol/a3/a3_test.py", line 143, in test_predict_2
+    self.assertEqual(round(make_predictions(movies, ratings_train, ratings_test)[0], 1), 2.6)
+AssertionError: 2.5 != 2.6
+
+source:
+    def test_predict_2(self):
+         """
+         @points=4
+         """
+         movies = pd.DataFrame([[123, 'horror|horror|romance|romance|romance', ['horror', 'horror', 'romance', 'romance', 'romance']],
+                                [456, 'comedy|horror', ['comedy', 'horror']],
+                                [789, 'horror', ['horror']],
+                                [000, 'action', ['action']]],
+                               columns=['movieId', 'genres', 'tokens'])
+         movies = add_titles(movies)
+         movies, vocab = featurize(movies)
+         ratings_train = pd.DataFrame([
+                 [9, 123, 2.5, 1260759144],
+                 [9, 456, 3.5, 1260759144],
+                 [9, 789, 1, 1260759144],
+                 [8, 123, 4.5, 1260759144],
+                 [8, 456, 4, 1260759144],
+                 [8, 789, 5, 1260759144],
+                 [7, 123, 2, 1260759144],
+                 [7, 456, 3, 1260759144]],
+                                      columns=['userId', 'movieId', 'rating', 'timestamp'])
+         ratings_test = pd.DataFrame([
+                 [7, 789, 4, 1260759144]],
+                                     columns=['userId', 'movieId', 'rating', 'timestamp'])
+ 
+         self.assertEqual(round(make_predictions(movies, ratings_train, ratings_test)[0], 1), 2.6)
+--------------
+

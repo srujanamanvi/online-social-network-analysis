@@ -1,0 +1,13 @@
+The assignment a4 is about collecting the tweets of 4 movies using twitter rest api. movies.txt contains the movies for which tweets are collected. The tweets collected are stored in a pickle file(data.pkl)which are later used for clustering and classifying. 
+
+cluster.py reads the pickle file and user of each tweet is collected for every movie. And a graph(network.png) is formed connecting users 
+to the movie for which they have tweeted. Further we cluster the graph to form communities. In this assignment clustering is formed by using betweenness of the edges. And each cluster formed indicates the users tweeting about a particular movie. The communities are stored in 0.png,
+1.png,2.png and 3.png
+
+Analysis: 
+We identify that there are users who have tweeted for more than one movie. This kind of graph can be used to analyse the combination of movies which people may have watched. This information can be further used in recommending movies to the user. The graph can also be used to know the popularity of each of  the movies by knowing the number of users tweeting about it. 
+
+The second part of the assignment performs sentiment analysis in classify.py. Here we analyse the tweets and form feature matrix. This matrix is further used to identify where tweet was positive or negative by using logistic regression model.  
+
+Analysis:
+This information can be further used to know whether a user has liked a movie or not. Based on his/her liking movies can be recommended to the user. The assignment calculates the accuarcy of the results for the given input by performing cross_validation using KFold.  

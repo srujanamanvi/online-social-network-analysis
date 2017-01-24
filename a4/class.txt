@@ -1,0 +1,3 @@
+The number of instances in class 0 is: 3
+The number of instances in class 2 is: 38
+The number of instances in class 4 is: 15

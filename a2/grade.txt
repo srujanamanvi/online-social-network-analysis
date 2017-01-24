@@ -1,0 +1,59 @@
+Grade: 45.00/50.00
+
+1 Deduction(s):
+
+--------------
+#1: 5.00 points
+Failing test: test_token_pair_features: 
+        @points=5
+        
+Traceback (most recent call last):
+  File "../assignments-sol/a2/a2_test.py", line 50, in test_token_pair_features
+    [('token_pair=a__b', 1), ('token_pair=a__c', 1), ('token_pair=a__d', 1), ('token_pair=b__c', 2), ('token_pair=b__d', 2), ('token_pair=b__e', 1), ('token_pair=c__d', 2), ('token_pair=c__e', 1), ('token_pair=d__e', 1)])
+AssertionError: Lists differ: [('to[148 chars]pair=c__d', 3), ('token_pair=c__e', 2), ('token_pair=d__e', 2)] != [('to[148 chars]pair=c__d', 2), ('token_pair=c__e', 1), ('token_pair=d__e', 1)]
+
+First differing element 6:
+('token_pair=c__d', 3)
+('token_pair=c__d', 2)
+
+  [('token_pair=a__b', 1),
+   ('token_pair=a__c', 1),
+   ('token_pair=a__d', 1),
+   ('token_pair=b__c', 2),
+   ('token_pair=b__d', 2),
+   ('token_pair=b__e', 1),
+-  ('token_pair=c__d', 3),
+?                      ^
+
++  ('token_pair=c__d', 2),
+?                      ^
+
+-  ('token_pair=c__e', 2),
+?                      ^
+
++  ('token_pair=c__e', 1),
+?                      ^
+
+-  ('token_pair=d__e', 2)]
+?                      ^
+
++  ('token_pair=d__e', 1)]
+?                      ^
+
+
+source:
+    def test_token_pair_features(self):
+         """
+         @points=5
+         """
+         feats = defaultdict(lambda: 0)
+         token_pair_features(np.array(['a', 'b', 'c', 'd']), feats)
+         self.assertListEqual(sorted(feats.items()),
+                              [('token_pair=a__b', 1), ('token_pair=a__c', 1), ('token_pair=b__c', 2), ('token_pair=b__d', 1), ('token_pair=c__d', 1)])
+ 
+         feats = defaultdict(lambda: 0)
+         token_pair_features(np.array(['a', 'b', 'c', 'd', 'e']), feats, k=4)
+         self.assertListEqual(sorted(feats.items()),
+                              [('token_pair=a__b', 1), ('token_pair=a__c', 1), ('token_pair=a__d', 1), ('token_pair=b__c', 2), ('token_pair=b__d', 2), ('token_pair=b__e', 1), ('token_pair=c__d', 2), ('token_pair=c__e', 1), ('token_pair=d__e', 1)])
+--------------
+
